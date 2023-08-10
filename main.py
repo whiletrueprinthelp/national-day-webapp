@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from werkzeug.utils import secure_filename
 import sqlite3, os
 
@@ -32,7 +32,7 @@ def home():
 @app.route('/view')
 def view():
   db = sqlite3.connect('album.db')
-  recs = db.execute('SELECT * FROM photos;')
+  recs = db.execute('SELECT photo FROM photos;')
   pics = []
   for rec in recs:
     pics.append(rec[0])
